@@ -1,11 +1,6 @@
 document.getElementById("joutukForm").addEventListener("submit", function(event) {
     event.preventDefault();
 
-    // Ethical disclaimer alert
-    if(!confirm("WARNING: This calculator is a satirical critique of dowry practices. We strongly oppose this illegal tradition. Continue?")) {
-        return;
-    }
-
     // Configuration object for easy adjustments
     const MULTIPLIERS = {
         EDUCATION: {
