@@ -5,12 +5,16 @@ document.getElementById("joutukForm").addEventListener("submit", function(event)
     const education = document.getElementById("education").value;
     const job = document.getElementById("job").value;
     const looks = document.getElementById("looks").value;
-    const height = parseInt(document.getElementById("height").value);
+    const heightFeet = parseInt(document.getElementById("heightFeet").value);
+    const heightInches = parseInt(document.getElementById("heightInches").value);
     const family = parseInt(document.getElementById("family").value);
     const cooking = document.getElementById("cooking").value;
 
+    // Convert height to inches (1 foot = 12 inches)
+    const totalHeightInInches = (heightFeet * 12) + heightInches;
+
     // Initialize the Joutuk amount
-    let joutukAmount = 10000 + (height * 500) + (family * 2000);
+    let joutukAmount = 10000 + (totalHeightInInches * 100) + (family * 2000);
 
     // Adjust Joutuk based on education level
     if (education === "highschool") {
@@ -24,13 +28,21 @@ document.getElementById("joutukForm").addEventListener("submit", function(event)
     }
 
     // Adjust Joutuk based on job level
-    if (job === "entry") {
-        joutukAmount += 0;
-    } else if (job === "mid") {
-        joutukAmount += 5000;
-    } else if (job === "senior") {
+    if (job === "doctor") {
         joutukAmount += 10000;
-    } else if (job === "executive") {
+    } else if (job === "engineer") {
+        joutukAmount += 7000;
+    } else if (job === "pilot") {
+        joutukAmount += 12000;
+    } else if (job === "banker") {
+        joutukAmount += 8000;
+    } else if (job === "government_employee") {
+        joutukAmount += 5000;
+    } else if (job === "teacher") {
+        joutukAmount += 4000;
+    } else if (job === "lawyer") {
+        joutukAmount += 10000;
+    } else if (job === "entrepreneur") {
         joutukAmount += 15000;
     }
 
