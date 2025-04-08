@@ -1,111 +1,161 @@
 document.getElementById("joutukForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent the form from submitting normally
+    event.preventDefault();
+    
+    // Get form values
+    var education = document.getElementById("education").value;
+    var job = document.getElementById("job").value;
+    var looks = document.getElementById("looks").value;
+    var heightFeet = parseInt(document.getElementById("heightFeet").value);
+    var heightInches = parseInt(document.getElementById("heightInches").value);
+    var family = parseInt(document.getElementById("family").value);
+    var cooking = document.getElementById("cooking").value;
 
-    // Get the values from the form fields
-    const education = document.getElementById("education").value;
-    const job = document.getElementById("job").value;
-    const looks = document.getElementById("looks").value;
-    const heightFeet = parseInt(document.getElementById("heightFeet").value);
-    const heightInches = parseInt(document.getElementById("heightInches").value);
-    const family = parseInt(document.getElementById("family").value);
-    const cooking = document.getElementById("cooking").value;
+    // Calculate total height in inches
+    var totalHeightInches = (heightFeet * 12) + heightInches;
 
-    // Convert height to inches (1 foot = 12 inches)
-    const totalHeightInInches = (heightFeet * 12) + heightInches;
+    // Base Joutuk Amount
+    var joutukAmount = 0;
 
-    // Initialize the Joutuk amount
-    let joutukAmount = 10000 + (totalHeightInInches * 100) + (family * 2000);
-
-    // Adjust Joutuk based on education level
-    if (education === "highschool") {
-        joutukAmount += 0;
-    } else if (education === "bachelor") {
-        joutukAmount += 5000;
-    } else if (education === "master") {
-        joutukAmount += 10000;
-    } else if (education === "phd") {
-        joutukAmount += 15000;
+    // Education multiplier
+    switch(education) {
+        case 'highschool':
+            joutukAmount += 10000;
+            break;
+        case 'bachelor':
+            joutukAmount += 20000;
+            break;
+        case 'master':
+            joutukAmount += 30000;
+            break;
+        case 'phd':
+            joutukAmount += 40000;
+            break;
+        case 'mbbs':
+            joutukAmount += 50000;
+            break;
     }
 
-    // Adjust Joutuk based on job level
-    if (job === "doctor") {
-        joutukAmount += 10000;
-    } else if (job === "engineer") {
-        joutukAmount += 7000;
-    } else if (job === "pilot") {
-        joutukAmount += 12000;
-    } else if (job === "banker") {
-        joutukAmount += 8000;
-    } else if (job === "government_employee") {
-        joutukAmount += 5000;
-    } else if (job === "teacher") {
-        joutukAmount += 4000;
-    } else if (job === "lawyer") {
-        joutukAmount += 10000;
-    } else if (job === "entrepreneur") {
-        joutukAmount += 15000;
+    // Job multiplier
+    switch(job) {
+        case 'doctor':
+            joutukAmount += 50000;
+            break;
+        case 'engineer':
+            joutukAmount += 40000;
+            break;
+        case 'pilot':
+            joutukAmount += 60000;
+            break;
+        case 'banker':
+            joutukAmount += 35000;
+            break;
+        case 'government_employee':
+            joutukAmount += 30000;
+            break;
+        case 'teacher':
+            joutukAmount += 25000;
+            break;
+        case 'lawyer':
+            joutukAmount += 45000;
+            break;
+        case 'entrepreneur':
+            joutukAmount += 70000;
+            break;
     }
 
-    // Adjust Joutuk based on looks rating
-    if (looks === "average") {
-        joutukAmount += 1000;
-    } else if (looks === "cute") {
-        joutukAmount += 3000;
-    } else if (looks === "handsome") {
-        joutukAmount += 5000;
-    } else if (looks === "beautiful") {
-        joutukAmount += 7000;
-    } else if (looks === "gorgeous") {
-        joutukAmount += 10000;
+    // Looks multiplier
+    switch(looks) {
+        case 'average':
+            joutukAmount += 10000;
+            break;
+        case 'cute':
+            joutukAmount += 15000;
+            break;
+        case 'handsome':
+            joutukAmount += 20000;
+            break;
+        case 'beautiful':
+            joutukAmount += 25000;
+            break;
+        case 'gorgeous':
+            joutukAmount += 30000;
+            break;
     }
 
-    // Adjust Joutuk based on cooking skills
-    if (cooking === "poor") {
-        joutukAmount += 0;
-    } else if (cooking === "average") {
-        joutukAmount += 2000;
-    } else if (cooking === "good") {
-        joutukAmount += 5000;
-    } else if (cooking === "excellent") {
-        joutukAmount += 10000;
+    // Height modifier (add more based on height)
+    if (totalHeightInches >= 70) {
+        joutukAmount += 20000;  // Taller than 5'10"
+    } else if (totalHeightInches >= 66) {
+        joutukAmount += 10000;  // 5'6" to 5'10"
+    }
+
+    // Family background multiplier
+    switch(family) {
+        case 1:
+            joutukAmount += 5000;
+            break;
+        case 2:
+            joutukAmount += 10000;
+            break;
+        case 3:
+            joutukAmount += 15000;
+            break;
+        case 4:
+            joutukAmount += 20000;
+            break;
+        case 5:
+            joutukAmount += 25000;
+            break;
+    }
+
+    // Cooking skills multiplier
+    switch(cooking) {
+        case 'poor':
+            joutukAmount += 5000;
+            break;
+        case 'average':
+            joutukAmount += 10000;
+            break;
+        case 'good':
+            joutukAmount += 15000;
+            break;
+        case 'excellent':
+            joutukAmount += 20000;
+            break;
     }
 
     // Display the result
-    document.getElementById("joutukAmount").textContent = joutukAmount.toLocaleString();
-    
-    // Determine what the user gets with the Joutuk
-    let items = [];
-    if (joutukAmount >= 500000) {
-        items.push("New Car or a New Bike");
-        items.push("2 grams of Gold");
-        items.push("Air Conditioner");
-        items.push("Refrigerator");
-    } else if (joutukAmount >= 200000) {
-        items.push("Used Car or a Used Bike");
-        items.push("1 gram of Gold");
-        items.push("Air Conditioner");
-    } else if (joutukAmount >= 100000) {
-        items.push("Scooter or Bike");
-        items.push("500 mg of Gold");
+    document.getElementById("joutukAmount").innerText = joutukAmount;
+
+    // Display the list of items
+    var itemsList = document.getElementById("itemsList");
+    itemsList.innerHTML = ""; // Clear previous list
+
+    // Determine items based on joutukAmount
+    if (joutukAmount >= 100000) {
+        itemsList.innerHTML += "<li>New Car</li>";
+        itemsList.innerHTML += "<li>5 Gram Gold</li>";
+        itemsList.innerHTML += "<li>Luxury Refrigerator</li>";
+        itemsList.innerHTML += "<li>Air Conditioner</li>";
+    } else if (joutukAmount >= 70000) {
+        itemsList.innerHTML += "<li>New Bike</li>";
+        itemsList.innerHTML += "<li>2 Gram Gold</li>";
+        itemsList.innerHTML += "<li>Air Conditioner</li>";
+    } else if (joutukAmount >= 50000) {
+        itemsList.innerHTML += "<li>Used Car</li>";
+        itemsList.innerHTML += "<li>1 Gram Gold</li>";
+        itemsList.innerHTML += "<li>Refrigerator</li>";
     } else {
-        items.push("Small Gifts and a Few Accessories");
+        itemsList.innerHTML += "<li>Basic Bike</li>";
+        itemsList.innerHTML += "<li>Gold Plated Jewelry</li>";
     }
 
-    // Display the items on the result page
-    const itemsList = document.getElementById("itemsList");
-    itemsList.innerHTML = "";
-    items.forEach(item => {
-        const li = document.createElement("li");
-        li.textContent = item;
-        itemsList.appendChild(li);
-    });
-
+    // Show the result section
     document.getElementById("result").style.display = "block";
-    document.getElementById("joutukForm").style.display = "none";
 });
 
-// Function to go back to the form
 function goBack() {
+    // Hide the result and reset the form
     document.getElementById("result").style.display = "none";
-    document.getElementById("joutukForm").style.display = "block";
+    document.getElementById("joutukForm").reset();
 }
