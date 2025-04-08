@@ -38,28 +38,28 @@ document.getElementById("joutukForm").addEventListener("submit", function(event)
     // Job multiplier
     switch(job) {
         case 'doctor':
-            joutukAmount += 100000;
-            break;
-        case 'engineer':
-            joutukAmount += 80000;
-            break;
-        case 'pilot':
             joutukAmount += 120000;
             break;
+        case 'engineer':
+            joutukAmount += 100000;
+            break;
+        case 'pilot':
+            joutukAmount += 150000;
+            break;
         case 'banker':
-            joutukAmount += 70000;
+            joutukAmount += 130000;
             break;
         case 'government_employee':
-            joutukAmount += 60000;
-            break;
-        case 'teacher':
             joutukAmount += 50000;
             break;
+        case 'teacher':
+            joutukAmount += 40000;
+            break;
         case 'lawyer':
-            joutukAmount += 90000;
+            joutukAmount += 110000;
             break;
         case 'entrepreneur':
-            joutukAmount += 150000;
+            joutukAmount += 140000;
             break;
     }
 
@@ -101,10 +101,10 @@ document.getElementById("joutukForm").addEventListener("submit", function(event)
             joutukAmount += 30000;
             break;
         case 4:
-            joutukAmount += 40000;
+            joutukAmount += 50000;
             break;
         case 5:
-            joutukAmount += 50000;
+            joutukAmount += 70000;
             break;
     }
 
@@ -144,10 +144,15 @@ document.getElementById("joutukForm").addEventListener("submit", function(event)
         itemsList.innerHTML += "<li>10 Gram Gold</li>";
         itemsList.innerHTML += "<li>High-End Refrigerator</li>";
         itemsList.innerHTML += "<li>Air Conditioner</li>";
+    } else if (joutukAmount >= 1200000) {
+        itemsList.innerHTML += "<li>New Car</li>";
+        itemsList.innerHTML += "<li>8 Gram Gold</li>";
+        itemsList.innerHTML += "<li>Luxury Refrigerator</li>";
+        itemsList.innerHTML += "<li>Air Conditioner</li>";
     } else if (joutukAmount >= 1000000) {
         itemsList.innerHTML += "<li>New Car</li>";
         itemsList.innerHTML += "<li>5 Gram Gold</li>";
-        itemsList.innerHTML += "<li>Luxury Refrigerator</li>";
+        itemsList.innerHTML += "<li>Refrigerator</li>";
         itemsList.innerHTML += "<li>Air Conditioner</li>";
     } else if (joutukAmount >= 800000) {
         itemsList.innerHTML += "<li>Used Car</li>";
