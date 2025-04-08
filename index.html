@@ -1,8 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+   <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Meta Tags for SEO -->
+    <meta name="description" content="Use the Joutuk Calculator to calculate the dowry amount based on education, job, height, family background, looks, and cooking skills.">
+    <meta name="keywords" content="Joutuk calculator, dowry calculator, marriage, wedding dowry, calculate dowry amount, cooking skills, looks rating, family background">
+    <meta name="author" content="Zilan">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags for Social Media -->
+    <meta property="og:title" content="Joutuk Calculator - Calculate Your Dowry Amount">
+    <meta property="og:description" content="Easily calculate your Joutuk (dowry) amount based on various factors like education, job, family, and cooking skills.">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Joutuk Calculator - Calculate Your Dowry Amount">
+    <meta name="twitter:description" content="Easily calculate your Joutuk (dowry) amount based on various factors like education, job, family, and cooking skills.">
+    
+    
     <title>Joutuk Calculator</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -10,6 +28,7 @@
     <div class="container">
         <h1>Joutuk Calculator</h1>
         <form id="joutukForm">
+            <!-- Education Level -->
             <label for="education">Education Level:</label>
             <select name="education" id="education">
                 <option value="highschool">High School</option>
@@ -19,24 +38,51 @@
             </select>
             <br>
 
-            <label for="job">Job Title/Income:</label>
-            <input type="text" name="job" id="job" required>
+            <!-- Job Title -->
+            <label for="job">Job Title:</label>
+            <select name="job" id="job">
+                <option value="entry">Entry-Level</option>
+                <option value="mid">Mid-Level</option>
+                <option value="senior">Senior-Level</option>
+                <option value="executive">Executive</option>
+            </select>
             <br>
 
-            <label for="looks">Looks Rating (1-10):</label>
-            <input type="number" name="looks" id="looks" min="1" max="10" required>
+            <!-- Looks Rating -->
+            <label for="looks">Looks Rating:</label>
+            <select name="looks" id="looks">
+                <option value="average">Average</option>
+                <option value="cute">Cute</option>
+                <option value="handsome">Handsome</option>
+                <option value="beautiful">Beautiful</option>
+                <option value="gorgeous">Gorgeous</option>
+            </select>
             <br>
 
+            <!-- Height -->
             <label for="height">Height (in cm):</label>
             <input type="number" name="height" id="height" required>
             <br>
 
-            <label for="family">Family Background (1-10):</label>
-            <input type="number" name="family" id="family" min="1" max="10" required>
+            <!-- Family Background -->
+            <label for="family">Family Background:</label>
+            <select name="family" id="family">
+                <option value="1">Very Modest</option>
+                <option value="2">Modest</option>
+                <option value="3">Average</option>
+                <option value="4">Well-off</option>
+                <option value="5">Wealthy</option>
+            </select>
             <br>
 
-            <label for="cooking">Cooking Skills (1-10):</label>
-            <input type="number" name="cooking" id="cooking" min="1" max="10" required>
+            <!-- Cooking Skills -->
+            <label for="cooking">Cooking Skills:</label>
+            <select name="cooking" id="cooking">
+                <option value="poor">Poor</option>
+                <option value="average">Average</option>
+                <option value="good">Good</option>
+                <option value="excellent">Excellent</option>
+            </select>
             <br>
 
             <button type="submit">Calculate Joutuk</button>
@@ -45,6 +91,10 @@
         <div id="result" style="display:none;">
             <h2>Calculated Joutuk Amount</h2>
             <p>Your calculated Joutuk is: <strong>৳<span id="joutukAmount"></span></strong></p>
+
+            <h3>What You Get with Your Joutuk:</h3>
+            <ul id="itemsList"></ul>
+
             <button onclick="goBack()">Go Back</button>
         </div>
     </div>
