@@ -13,141 +13,153 @@ document.getElementById("joutukForm").addEventListener("submit", function(event)
     // Calculate total height in inches
     var totalHeightInches = (heightFeet * 12) + heightInches;
 
-    // Base Joutuk Amount
-    var joutukAmount = 0;
+    // Base Joutuk Amount (2 lakh to 15 lakh range)
+    var joutukAmount = 200000;
 
     // Education multiplier
     switch(education) {
         case 'highschool':
-            joutukAmount += 10000;
-            break;
-        case 'bachelor':
             joutukAmount += 20000;
             break;
-        case 'master':
-            joutukAmount += 30000;
-            break;
-        case 'phd':
+        case 'bachelor':
             joutukAmount += 40000;
             break;
+        case 'master':
+            joutukAmount += 60000;
+            break;
+        case 'phd':
+            joutukAmount += 80000;
+            break;
         case 'mbbs':
-            joutukAmount += 50000;
+            joutukAmount += 100000;
             break;
     }
 
     // Job multiplier
     switch(job) {
         case 'doctor':
-            joutukAmount += 50000;
+            joutukAmount += 100000;
             break;
         case 'engineer':
-            joutukAmount += 40000;
+            joutukAmount += 80000;
             break;
         case 'pilot':
-            joutukAmount += 60000;
+            joutukAmount += 120000;
             break;
         case 'banker':
-            joutukAmount += 35000;
+            joutukAmount += 70000;
             break;
         case 'government_employee':
-            joutukAmount += 30000;
+            joutukAmount += 60000;
             break;
         case 'teacher':
-            joutukAmount += 25000;
+            joutukAmount += 50000;
             break;
         case 'lawyer':
-            joutukAmount += 45000;
+            joutukAmount += 90000;
             break;
         case 'entrepreneur':
-            joutukAmount += 70000;
+            joutukAmount += 150000;
             break;
     }
 
     // Looks multiplier
     switch(looks) {
         case 'average':
-            joutukAmount += 10000;
-            break;
-        case 'cute':
-            joutukAmount += 15000;
-            break;
-        case 'handsome':
             joutukAmount += 20000;
             break;
+        case 'cute':
+            joutukAmount += 30000;
+            break;
+        case 'handsome':
+            joutukAmount += 40000;
+            break;
         case 'beautiful':
-            joutukAmount += 25000;
+            joutukAmount += 50000;
             break;
         case 'gorgeous':
-            joutukAmount += 30000;
+            joutukAmount += 60000;
             break;
     }
 
     // Height modifier (add more based on height)
     if (totalHeightInches >= 70) {
-        joutukAmount += 20000;  // Taller than 5'10"
+        joutukAmount += 40000;  // Taller than 5'10"
     } else if (totalHeightInches >= 66) {
-        joutukAmount += 10000;  // 5'6" to 5'10"
+        joutukAmount += 20000;  // 5'6" to 5'10"
     }
 
     // Family background multiplier
     switch(family) {
         case 1:
-            joutukAmount += 5000;
-            break;
-        case 2:
             joutukAmount += 10000;
             break;
-        case 3:
-            joutukAmount += 15000;
-            break;
-        case 4:
+        case 2:
             joutukAmount += 20000;
             break;
+        case 3:
+            joutukAmount += 30000;
+            break;
+        case 4:
+            joutukAmount += 40000;
+            break;
         case 5:
-            joutukAmount += 25000;
+            joutukAmount += 50000;
             break;
     }
 
     // Cooking skills multiplier
     switch(cooking) {
         case 'poor':
-            joutukAmount += 5000;
-            break;
-        case 'average':
             joutukAmount += 10000;
             break;
+        case 'average':
+            joutukAmount += 20000;
+            break;
         case 'good':
-            joutukAmount += 15000;
+            joutukAmount += 30000;
             break;
         case 'excellent':
-            joutukAmount += 20000;
+            joutukAmount += 40000;
             break;
     }
 
+    // Ensure Joutuk amount stays within the 2 lakh to 15 lakh range
+    if (joutukAmount < 200000) {
+        joutukAmount = 200000;
+    } else if (joutukAmount > 1500000) {
+        joutukAmount = 1500000;
+    }
+
     // Display the result
-    document.getElementById("joutukAmount").innerText = joutukAmount;
+    document.getElementById("joutukAmount").innerText = joutukAmount.toLocaleString();
 
     // Display the list of items
     var itemsList = document.getElementById("itemsList");
     itemsList.innerHTML = ""; // Clear previous list
 
     // Determine items based on joutukAmount
-    if (joutukAmount >= 100000) {
+    if (joutukAmount >= 1400000) {
+        itemsList.innerHTML += "<li>New Luxury Car</li>";
+        itemsList.innerHTML += "<li>10 Gram Gold</li>";
+        itemsList.innerHTML += "<li>High-End Refrigerator</li>";
+        itemsList.innerHTML += "<li>Air Conditioner</li>";
+    } else if (joutukAmount >= 1000000) {
         itemsList.innerHTML += "<li>New Car</li>";
         itemsList.innerHTML += "<li>5 Gram Gold</li>";
         itemsList.innerHTML += "<li>Luxury Refrigerator</li>";
         itemsList.innerHTML += "<li>Air Conditioner</li>";
-    } else if (joutukAmount >= 70000) {
-        itemsList.innerHTML += "<li>New Bike</li>";
-        itemsList.innerHTML += "<li>2 Gram Gold</li>";
-        itemsList.innerHTML += "<li>Air Conditioner</li>";
-    } else if (joutukAmount >= 50000) {
+    } else if (joutukAmount >= 800000) {
         itemsList.innerHTML += "<li>Used Car</li>";
-        itemsList.innerHTML += "<li>1 Gram Gold</li>";
+        itemsList.innerHTML += "<li>3 Gram Gold</li>";
         itemsList.innerHTML += "<li>Refrigerator</li>";
+    } else if (joutukAmount >= 500000) {
+        itemsList.innerHTML += "<li>Used Bike</li>";
+        itemsList.innerHTML += "<li>2 Gram Gold</li>";
+        itemsList.innerHTML += "<li>Basic Refrigerator</li>";
     } else {
         itemsList.innerHTML += "<li>Basic Bike</li>";
-        itemsList.innerHTML += "<li>Gold Plated Jewelry</li>";
+        itemsList.innerHTML += "<li>Gold-Plated Jewelry</li>";
     }
 
     // Show the result section
