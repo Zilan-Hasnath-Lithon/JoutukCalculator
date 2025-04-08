@@ -41,10 +41,14 @@
             <!-- Job Title -->
             <label for="job">Job Title:</label>
             <select name="job" id="job">
-                <option value="entry">Entry-Level</option>
-                <option value="mid">Mid-Level</option>
-                <option value="senior">Senior-Level</option>
-                <option value="executive">Executive</option>
+                <option value="doctor">Doctor</option>
+                <option value="engineer">Engineer</option>
+                <option value="pilot">Pilot</option>
+                <option value="banker">Banker</option>
+                <option value="government_employee">Government Employee</option>
+                <option value="teacher">Teacher</option>
+                <option value="lawyer">Lawyer</option>
+                <option value="entrepreneur">Entrepreneur</option>
             </select>
             <br>
 
@@ -60,8 +64,9 @@
             <br>
 
             <!-- Height -->
-            <label for="height">Height (in cm):</label>
-            <input type="number" name="height" id="height" required>
+            <label for="heightFeet">Height:</label>
+            <input type="number" name="heightFeet" id="heightFeet" placeholder="Feet" required> feet
+            <input type="number" name="heightInches" id="heightInches" placeholder="Inches" required> inches
             <br>
 
             <!-- Family Background -->
