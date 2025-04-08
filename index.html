@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joutuk Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Joutuk Calculator</h1>
+        <form action="result.php" method="POST">
+            <label for="education">Education Level:</label>
+            <select name="education" id="education">
+                <option value="highschool">High School</option>
+                <option value="bachelor">Bachelor's</option>
+                <option value="master">Master's</option>
+                <option value="phd">PhD</option>
+            </select>
+            <br>
+
+            <label for="job">Job Title/Income:</label>
+            <input type="text" name="job" id="job">
+            <br>
+
+            <label for="looks">Looks Rating (1-10):</label>
+            <input type="number" name="looks" id="looks" min="1" max="10">
+            <br>
+
+            <label for="height">Height (in cm):</label>
+            <input type="number" name="height" id="height">
+            <br>
+
+            <label for="family">Family Background (1-10):</label>
+            <input type="number" name="family" id="family" min="1" max="10">
+            <br>
+
+            <label for="cooking">Cooking Skills (1-10):</label>
+            <input type="number" name="cooking" id="cooking" min="1" max="10">
+            <br>
+
+            <button type="submit">Calculate Joutuk</button>
+        </form>
+    </div>
+</body>
+</html>
