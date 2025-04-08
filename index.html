@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <h1>Joutuk Calculator</h1>
-        <form action="result.php" method="POST">
+        <form id="joutukForm">
             <label for="education">Education Level:</label>
             <select name="education" id="education">
                 <option value="highschool">High School</option>
@@ -20,27 +20,35 @@
             <br>
 
             <label for="job">Job Title/Income:</label>
-            <input type="text" name="job" id="job">
+            <input type="text" name="job" id="job" required>
             <br>
 
             <label for="looks">Looks Rating (1-10):</label>
-            <input type="number" name="looks" id="looks" min="1" max="10">
+            <input type="number" name="looks" id="looks" min="1" max="10" required>
             <br>
 
             <label for="height">Height (in cm):</label>
-            <input type="number" name="height" id="height">
+            <input type="number" name="height" id="height" required>
             <br>
 
             <label for="family">Family Background (1-10):</label>
-            <input type="number" name="family" id="family" min="1" max="10">
+            <input type="number" name="family" id="family" min="1" max="10" required>
             <br>
 
             <label for="cooking">Cooking Skills (1-10):</label>
-            <input type="number" name="cooking" id="cooking" min="1" max="10">
+            <input type="number" name="cooking" id="cooking" min="1" max="10" required>
             <br>
 
             <button type="submit">Calculate Joutuk</button>
         </form>
+
+        <div id="result" style="display:none;">
+            <h2>Calculated Joutuk Amount</h2>
+            <p>Your calculated Joutuk is: <strong>৳<span id="joutukAmount"></span></strong></p>
+            <button onclick="goBack()">Go Back</button>
+        </div>
     </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
