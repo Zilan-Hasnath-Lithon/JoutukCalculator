@@ -1,108 +1,88 @@
-document.getElementById("joutukForm").addEventListener("submit", function(event) {
-    event.preventDefault();
+document.getElementById("joutukForm").addEventListener("submit", function(e) {
+    e.preventDefault();
 
-    // Configuration object for easy adjustments
-    const MULTIPLIERS = {
-        EDUCATION: {
-            highschool: 50000,
-            bachelor: 100000,
-            master: 150000,
-            phd: 200000,
-            mbbs: 300000
-        },
-        JOB: {
-            teacher: 100000,
-            banker: 150000,
-            engineer: 200000,
-            lawyer: 250000,
-            government_employee: 180000,
-            doctor: 300000,
-            pilot: 400000,
-            entrepreneur: 350000
-        },
-        LOOKS: {
-            average: 50000,
-            cute: 100000,
-            handsome: 150000,
-            beautiful: 200000,
-            gorgeous: 250000
-        },
-        FAMILY: {
-            1: 50000,   // Very Modest
-            2: 100000,  // Modest
-            3: 150000,  // Average
-            4: 200000,  // Well-off
-            5: 300000   // Wealthy
-        },
-        COOKING: {
-            poor: 0,
-            average: 50000,
-            good: 100000,
-            excellent: 150000
-        },
-        HEIGHT: {
-            base: 66,  // 5'6" in inches
-            perInch: 10000
-        }
+    // Values mapping (all positive)
+    const educationValues = {
+        bachelor: 90000,
+        master: 95000,
+        phd: 100000
     };
 
-    // Get input values
-    const getValue = id => document.getElementById(id).value;
-    const heightFeet = parseInt(getValue("heightFeet")) || 0;
-    const heightInches = parseInt(getValue("heightInches")) || 0;
+    const jobValues = {
+        doctor: 300000,
+        engineer: 160000,
+        pilot: 400000,
+        banker: 200000,
+        government_employee: 200000,
+        teacher: 80000,
+        lawyer: 90000,
+        entrepreneur: 70000
+    };
 
-    // Validate inputs
-    if (heightFeet < 0 || heightInches < 0 || heightInches > 11) {
-        alert("Please enter valid height measurements!");
-        return;
-    }
+    const familyValues = {
+        poor: 50000,
+        middle_class: 90000,
+        rich: 120000
+    };
 
-    // Calculate components
-    const totalHeight = heightFeet * 12 + heightInches;
-    const heightBonus = Math.max(0, (totalHeight - MULTIPLIERS.HEIGHT.base)) * MULTIPLIERS.HEIGHT.perInch;
+    const heightValues = {
+        "1-3": 20000,
+        "4": 40000,
+        "5": 60000,
+        "6": 100000
+    };
 
-    // Calculate base joutuk
-    let joutuk = 500000; // Base amount
+    const looksValues = {
+        average: 40000,
+        good: 50000,
+        handsome: 60000
+    };
 
-    // Add bonuses
-    joutuk += MULTIPLIERS.EDUCATION[getValue("education")];
-    joutuk += MULTIPLIERS.JOB[getValue("job")];
-    joutuk += MULTIPLIERS.LOOKS[getValue("looks")];
-    joutuk += MULTIPLIERS.FAMILY[getValue("family")];
-    joutuk += MULTIPLIERS.COOKING[getValue("cooking")];
-    joutuk += heightBonus;
+    const cookingValues = {
+        cannot_cook: 0,
+        average: 30000,
+        good: 60000,
+        excellent: 70000
+    };
 
-    // Cap between 500k to 5 million
-    joutuk = Math.min(Math.max(joutuk, 500000), 5000000);
+    // Get selected values
+    const education = document.getElementById("education").value;
+    const job = document.getElementById("job").value;
+    const family = document.getElementById("family").value;
+    const height = document.getElementById("height").value;
+    const looks = document.getElementById("looks").value;
+    const cooking = document.getElementById("cooking").value;
 
-    // Display results
-    const formatCurrency = num => num.toLocaleString('en-IN', {style: 'currency', currency: 'INR'});
-    document.getElementById("joutukAmount").textContent = formatCurrency(joutuk).replace('₹', '৳');
+    // Calculate total Joutuk
+    let total = 0;
 
-    // Generate items list
-    const itemsList = document.getElementById("itemsList");
-    itemsList.innerHTML = ""; // Reset
-    
-    const items = [];
-    if (joutuk >= 3000000) {
-        items.push("🏎️ Luxury Car", "🏢 Apartment", "🥇 1kg Gold", "✈️ International Vacation");
-    } else if (joutuk >= 2000000) {
-        items.push("🚗 Premium Car", "🏡 Land Property", "🥈 500g Gold", "🌴 Resort Vacation");
-    } else if (joutuk >= 1000000) {
-        items.push("🚙 Family Car", "💍 Diamond Set", "🥉 250g Gold");
-    } else {
-        items.push("🛵 Scooter", "📱 Smartphone", "⌚ Wristwatch");
-    }
+    total += educationValues[education];
+    total += jobValues[job];
+    total += familyValues[family];
+    total += heightValues[height];
+    total += looksValues[looks];
+    total += cookingValues[cooking];
 
-    items.forEach(item => {
-        itemsList.innerHTML += `<li>${item}</li>`;
-    });
+   // Determine bonus
+let bonusText = "No bonus";
+if(total >= 400000) {
+    bonusText = "🥇 23.32 gram gold, 🏍️ 250cc Motorbike, and 🧊 Refrigerator";
+} else if(total >= 300000) {
+    bonusText = "🥇 23.32 gram gold and 🏍️ 150cc Motorbike";
+} else if(total >= 200000) {
+    bonusText = "🥇 11.66 gram gold";
+}
 
-    // Show results
+
+    // Show result
+    document.getElementById("joutukAmount").textContent = total.toLocaleString();
+    document.getElementById("bonusAmount").textContent = bonusText;
+
     document.getElementById("result").style.display = "block";
+    window.scrollTo(0, document.body.scrollHeight);
 });
 
+// Go back button
 function goBack() {
     document.getElementById("result").style.display = "none";
-    document.getElementById("joutukForm").reset();
 }
